@@ -38,7 +38,9 @@ jobs:
           rm -rf node_modules yarn.lock
           yarn add -D react-scripts@latest
       - name: Build
-        run: yarn build
+        run: |
+          yarn build-static -j4
+          yarn build
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
