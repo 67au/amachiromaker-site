@@ -33,7 +33,14 @@ jobs:
           node-version: 18
           cache: 'yarn'
       - name: Install dependencies
-        run: yarn install --audit
+        run: yarn install
+      - name: Audit fix
+        run: |
+          npm i --package-lock-only
+          npm audit fix
+          rm yarn.lock
+          yarn import
+          rm package-lock.json
       - name: Build
         run: yarn build
       - name: Setup Pages
